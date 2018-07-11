@@ -45,6 +45,7 @@ public class JwtTokenAuthenticationFilter extends OncePerRequestFilter {
             // 4. Validate the token
             //JWT => body = Claims, signature = String, header = JwsHeader
             Claims claims = Jwts.parser()
+                    //if signing key does not match SignatureException will be thrown
                     .setSigningKey(_secret.getBytes())
                     .parseClaimsJws(token)
                     .getBody();
